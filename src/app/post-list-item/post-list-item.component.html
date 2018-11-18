@@ -5,9 +5,6 @@
 	<div [ngStyle]="{color: getColor()}">{{ title }}</div>
 	<div [ngStyle]="{color:'gray'}">{{ created_at | date: 'short'  }}</div>
   </div>
-  <h4 [ngStyle]="{color: getColor()}">{{ title }}</h4>
-  <h4 [ngStyle]="{color: getColor()}">{{ created_at | date: 'short'  }}</h4>
-  <h4 [ngStyle]="{color: getColor()}">{{ created_at }}</h4>
   <p>{{ content }}</p>
   <button 	class="btn btn-success"  
 				(click)="onLike()">Love it !</button>
