@@ -2,8 +2,8 @@
                 'list-group-item-success': loveIts > 0,
                 'list-group-item-danger': loveIts < 0}">
   <div>
-	<div [ngStyle]="{color: getColor()}">{{ title }}</div>
-	<div [ngStyle]="{color:'gray'}">{{ created_at | date: 'short'  }}</div>
+	<div [ngStyle]="{color: getColor()}" class="titre">{{ title | uppercase }}</div>
+	<div [ngStyle]="{color:'gray'}" class="date_creat">{{ created_at | date: 'short'  }}</div>
   </div>
   <p>{{ content }}</p>
   <button 	class="btn btn-success"  
