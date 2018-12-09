@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { PostService } from '../services/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-list-item',
@@ -8,23 +11,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PostListItemComponent implements OnInit {
 
 // objet post : chaque post est constitué
+//              -> d'un id unique
 //              -> d'un titre
 //              -> d'un contenu
 //              -> d'un total de like/dislike
 //              -> d'une date de création
+  @Input() id: number;
   @Input() title: string;
   @Input() content: string;
   @Input() loveIts: number;
   @Input() created_at: Date;
-  
+  @Input() index: number;
 
-  constructor() { }
+
+  constructor(private postsService: PostService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
-
-  
 // retourne la couleur du texte affiché suivant que le post soit liké ou non
   getColor() {
     if(this.loveIts > 0) {
@@ -38,11 +43,15 @@ export class PostListItemComponent implements OnInit {
   
 // Fonction lorsqu'on l'on clique sur un like
   onLike() {
-    this.loveIts ++;
+    this.postsService.likePost(this.index);
 	}
 	
 // Fonction lorsqu'on l'on clique sur le bouton "Don't like it!"
   onDislike() {
-    this.loveIts --;
-	}
+    this.postsService.dislikePost(this.index);
+  }
+  
+  onDelete() {
+    this.postsService.removePost(this.index);
+  }
 }
