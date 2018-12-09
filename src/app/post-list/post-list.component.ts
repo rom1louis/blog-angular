@@ -20,6 +20,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 				this.posts = posts;
 			}
 		);
+		this.postService.getBooks();
 		this.postService.emitPosts();
 	}
 	
